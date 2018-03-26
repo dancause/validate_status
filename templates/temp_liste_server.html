@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% block content %}
+
+      <title>Serveur On-ligne</title>
+   <meta charset="utf-8">
+  <link rel="stylesheet" href="/vendor/jquery/jquery-ui.css">
+  <script src="/vendor/jquery/jquery.js"></script>
+  <script src="/vendor/jquery/jquery-ui.js"></script>
+<script src="/js/comments.js"></script>
+
+
+
+<div class="form_upload">
+    <h1 class="title">Admin liste</h1>
+
+ <table class="table table-hover table-responsive liste_articles">
+    <thead>
+    	<tr>
+        <th>Numéro</th>
+        <th>URL</th>
+        <th>date</th>
+    	<th>status</th>
+    	</tr>
+    	</thead>
+
+    	 {% if not web %}
+
+    	 <tr>
+
+    	<td style="text-align: center;" COLSPAN="10"><h2>Link Broken</h2></td>
+    	</tr>
+    	 {% else %}
+				{% for a in web %}
+				<tr>
+                    <td>{{a.unique }}</td>
+    				<td>{{a.url}}</td>
+    				<td>{{a.titre_fr}}</td>
+    				<td>{{a.titre_ang }}</td>
+
+    			</tr>
+    			{% endfor %}
+    	{% endif %}
+    </table>
+
+
+
+
+{% endblock %}
