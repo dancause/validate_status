@@ -51,15 +51,22 @@ def get_db():
 
 @app.route('/')
 def start_page():
-    return render_template('temp_liste_server.html')
+    liste = validate_status()
+    return render_template('temp_liste_server.html',liste=liste)
 
 
 def validate_status():
-
+    liste = get_db().get_url()
+    for link in liste
+        code = validate_url(link['url'])
+        if code > 500:
+            
     return 0
 
 
 def validate_url(link):
     r = requests.head(link)
     return r.status_code
+
+def save_log():
 
