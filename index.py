@@ -51,16 +51,21 @@ def get_db():
 
 @app.route('/')
 def start_page():
-    liste = validate_status()
-    return render_template('temp_liste_server.html',liste=liste)
+    web = validate_status()
+    return render_template('temp_liste_server.html',web=web)
 
 
 def validate_status():
     liste = get_db().get_url()
+    error=[]
     for link in liste
         code = validate_url(link['url'])
         if code > 500:
-            
+            get_db().save_log(link['url'],link['status'])
+            p = error(link['number'], link['url'], link['date'], link['status'])
+            listes.append(p)
+         get_db().update_link(link['url'],link['status'])
+
     return 0
 
 
