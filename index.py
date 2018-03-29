@@ -62,10 +62,9 @@ def validate_status():
         code = validate_url(link['url'])
         if code > 500:
             get_db().save_log(link['url'],link['status'])
-            p = error(link['number'], link['url'], link['date'], link['status'])
-            listes.append(p)
+            p = Website(link['number'], link['url'], link['date'], link['status'])
+            error.append(p)
          get_db().update_link(link['url'],link['status'])
-
     return 0
 
 
@@ -73,5 +72,8 @@ def validate_url(link):
     r = requests.head(link)
     return r.status_code
 
-def save_log():
+def save_log(link,status):
+
+def send_courriel():
+    pass
 
