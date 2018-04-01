@@ -1,16 +1,10 @@
 {% extends "index.html" %}
 {% block content %}
-
-      <title>Serveur On-ligne</title>
-   <meta charset="utf-8">
-  <link rel="stylesheet" href="/vendor/jquery/jquery-ui.css">
-  <script src="/vendor/jquery/jquery.js"></script>
-  <script src="/vendor/jquery/jquery-ui.js"></script>
-<script src="/js/comments.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-
-<div class="form_upload">
+<div class="listes_clients">
     <h1 class="title">Admin liste</h1>
 
  <table class="table table-hover table-responsive liste_articles">
@@ -32,10 +26,10 @@
     	 {% else %}
 				{% for a in web %}
 				<tr>
-                    <td>{{a.unique }}</td>
-    				<td>{{a.url}}</td>
-    				<td>{{a.titre_fr}}</td>
-    				<td>{{a.titre_ang }}</td>
+                    <td>{{a.number }}</td>
+    				<td>{{a.link}}</td>
+    				<td>{{a.date}}</td>
+    				<td>{{a.status}}</td>
 
     			</tr>
     			{% endfor %}
