@@ -61,6 +61,8 @@ def validate_url(link):
     temp = 0
     try:
         r = requests.head(link)
+        print r.url
+        print r.status_code
         temp = r.status_code
     except Exception as value:
         temp = 500
