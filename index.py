@@ -35,12 +35,9 @@ def get_db():
         g._database = Database()
     return g._database
 
-
 @app.route('/')
 def start_page():
-    web = validate_status()
-    return render_template('temp_liste_server.html',web=web)
-
+    return render_template('temp_liste_server.html',web=validate_status())
 
 def validate_status():
     liste = get_db().get_url()
@@ -48,21 +45,18 @@ def validate_status():
     good = []
     for link in liste:
         code = validate_url(link.link)
-        now = datetime.now()
+        now = date_now()
         if code >= 500:
-            get_db().save_log(link.link,now.isoformat(),code)
-            p = Website(link.number, link.link,now.isoformat(), code)
+            get_db().save_log(link.link,now,code)
+            p = Website(link.number, link.link,now, code)
             error.append(p)
-        get_db().update_link(link.number,link.link, now.isoformat(),code)
+        get_db().update_link(link.number,link.link, now,code)
     return get_db().get_url()
-
 
 def validate_url(link):
     temp = 0
     try:
         r = requests.head(link)
-        print r.url
-        print r.status_code
         temp = r.status_code
     except Exception as value:
         temp = 500
@@ -70,3 +64,6 @@ def validate_url(link):
 
 def send_courriel():
     pass
+
+def date_now():
+    return datetime.now().strftime("%d-%m-%Y %H:%M:%S")
